@@ -10,5 +10,3 @@ while 1:
     i += 1
     i %= 10
     time.sleep(1)
-
-#modify file
