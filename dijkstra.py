@@ -48,7 +48,7 @@ class VertexD(Vertex):
         self.visited = True
 
     def __str__(self):
-        return str(self.id) + ' adjacent: ' + str([x.id for x in self.adjacent])
+        return str(self.id) + ' adjacent: ' + str([x for x in self.adjacent])
 
 
 class GraphD(Graph):
@@ -86,7 +86,7 @@ import heapq
 
 
 def dijkstra(aGraph, start, target, nodes):
-    print('''Dijkstra's shortest path''')
+    print('''Running Dijkstra's shortest path''')
     # Set the distance for the start node to zero
     start.set_distance(0)
 
@@ -102,19 +102,20 @@ def dijkstra(aGraph, start, target, nodes):
 
         # for next in v.adjacent:
         for next in current.adjacent:
+            next_vertex = aGraph.get_vertex(next)
             # if visited, skip
-            if current.adjacent[next].visited:
+            if next_vertex.visited:
                 continue
             new_dist = current.get_distance() + current.get_weight(next)
 
-            if new_dist < next.get_distance():
-                next.set_distance(new_dist)
-                next.set_previous(current)
+            if new_dist < next_vertex.get_distance():
+                next_vertex.set_distance(new_dist)
+                next_vertex.set_previous(current)
                 print('updated : current = {} '
-                      'next = {} new_dist = {}'.format(current.get_id(), next.get_id(), next.get_distance()))
+                      'next = {} new_dist = {}'.format(current.get_id(), next_vertex.get_id(), next_vertex.get_distance()))
             else:
                 print('not updated : current = {} '
-                      'next = {} new_dist = {}'.format(current.get_id(), next.get_id(), next.get_distance()))
+                      'next = {} new_dist = {}'.format(current.get_id(), next_vertex.get_id(), next_vertex.get_distance()))
 
         # Rebuild heap
         # 1. Pop every item
@@ -154,24 +155,6 @@ if __name__ == '__main__':
     g.add_edge(nodes['d'], nodes['e'], 6)
     g.add_edge(nodes['e'], nodes['f'], 9)
 
-    # g.add_vertex('a')
-    # g.add_vertex('b')
-    # g.add_vertex('c')
-    # g.add_vertex('d')
-    # g.add_vertex('e')
-    # g.add_vertex('f')
-    #
-    # g.add_edge('a', 'b', 7)
-    # g.add_edge('a', 'c', 9)
-    # # g.add_edge('a', 'd', 5)
-    # g.add_edge('a', 'f', 14)
-    # g.add_edge('b', 'c', 10)
-    # g.add_edge('b', 'd', 15)
-    # g.add_edge('c', 'd', 11)
-    # g.add_edge('c', 'f', 2)
-    # g.add_edge('d', 'e', 6)
-    # g.add_edge('e', 'f', 9)
-
     print('Dijkstra Graph data:')
     for v in g:
         for w in v.get_connections():
@@ -180,9 +163,9 @@ if __name__ == '__main__':
             # wid = w.get_id()
             print('( {} , {}, {})'.format(vid, wid, v.get_weight(w)))
 
-    dijkstra(g, g.get_vertex('a'), g.get_vertex('e'), nodes)
+    dijkstra(g, g.get_vertex('b'), g.get_vertex('f'), nodes)
 
-    target = g.get_vertex('e')
+    target = g.get_vertex('f')
     path = [target.get_id()]
     shortest(target, path)
     print('The shortest path : {}'.format(path[::-1]))
