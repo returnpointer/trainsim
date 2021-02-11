@@ -1,5 +1,5 @@
-from graph_railway import Node
 """Railway Building APIs"""
+from graph_railway import Node
 
 num_stations = 0
 num_junctions = 0
@@ -31,17 +31,23 @@ def add_junction(railway, graph):
     return num_junctions
 
 
-def add_tracks(railway, graph, frm, to, size):
+def add_track(railway, graph, frm, to, size):
     global num_tracks
     num_tracks += 1
 
     graph.add_edge(frm, to, size)
 
-    railway['tracks'].append(frm+'-'+to)
+    track_id = 'track' + str(num_tracks)
+    railway['tracks'][track_id] = [frm, to]
 
     return num_tracks
 
 
-def add_trains(railway, graph, station):
+def add_train(railway, station):
     global num_trains
-    return
+    num_trains += 1
+
+    train_id = 'train' + str(num_trains)
+    railway['trains'][train_id] = station
+
+    return num_trains

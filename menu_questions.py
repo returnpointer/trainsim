@@ -14,20 +14,26 @@ build_questions = [
         'message': '1. Add to the railway network ?',
         'choices': ['Station', 'Junction', 'Track', 'Train', 'Main Menu'],
     },
-    # {
-    #     'type': 'list',
-    #     'name': 'connect',
-    #     'message': '2. Place track between connections ?',
-    #     'choices': [],
-    # }
 ]
 
 track_questions = [
     {
         'type': 'list',
-        'name': 'track',
+        'name': 'track_size',
         'message': '1. How long would you like the track to be ?',
         'choices': ['3 units', '5 units', '10 units'],
+    },
+    {
+        'type': 'list',
+        'name': 'track_from',
+        'message': '2. Where does the track start ?',
+        'choices': [],
+    },
+    {
+        'type': 'list',
+        'name': 'track_to',
+        'message': '3. Where does the track end ?',
+        'choices': [],
     }
 ]
 
@@ -35,7 +41,7 @@ track_questions = [
 train_questions = [
     {
         'type': 'list',
-        'name': 'railway',
+        'name': 'station',
         'message': '1. Where would you like to station the train ?',
         'choices': [],
     }

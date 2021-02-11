@@ -5,7 +5,7 @@ import graph_dijkstra
 SIGNAL_STATE = ['GREEN', 'RED']
 
 
-class Connection(VertexD):
+class Connector(VertexD):
     weight_idx = 0
     signal_state_idx = 1
 
@@ -36,7 +36,7 @@ class GraphRailway(GraphD):
 
     def add_vertex(self, node):
         self.num_vertices = self.num_vertices + 1
-        new_vertex = Connection(node)
+        new_vertex = Connector(node)
         self.vert_dict[node.id] = new_vertex
         return new_vertex
 
