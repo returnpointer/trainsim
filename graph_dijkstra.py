@@ -128,6 +128,7 @@ def dijkstra(aGraph, start, target, nodes):
 
 if __name__ == '__main__':
 
+    print("Dijkstra-Graph")
     g = GraphD()
 
     nodes = {'a': Node('a'),
@@ -144,16 +145,16 @@ if __name__ == '__main__':
     g.add_vertex(nodes['e'])
     g.add_vertex(nodes['f'])
 
-    g.add_edge(nodes['a'], nodes['b'], 7)
-    g.add_edge(nodes['a'], nodes['c'], 9)
-    # g.add_edge(nodes['a'], nodes['d'], 5)
-    g.add_edge(nodes['a'], nodes['f'], 14)
-    g.add_edge(nodes['b'], nodes['c'], 10)
-    g.add_edge(nodes['b'], nodes['d'], 15)
-    g.add_edge(nodes['c'], nodes['d'], 11)
-    g.add_edge(nodes['c'], nodes['f'], 2)
-    g.add_edge(nodes['d'], nodes['e'], 6)
-    g.add_edge(nodes['e'], nodes['f'], 9)
+    g.add_edge('a', 'b', 7)
+    g.add_edge('a', 'c', 9)
+    # g.add_edge('a', 'd', 5)
+    g.add_edge('a', 'f', 14)
+    g.add_edge('b', 'c', 10)
+    g.add_edge('b', 'd', 15)
+    g.add_edge('c', 'd', 11)
+    g.add_edge('c', 'f', 2)
+    g.add_edge('d', 'e', 6)
+    g.add_edge('e', 'f', 9)
 
     print('Dijkstra Graph data:')
     for v in g:

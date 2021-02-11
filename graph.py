@@ -63,64 +63,64 @@ class Graph:
             return None
 
     def add_edge(self, frm, to, cost=0):
-        if frm.id not in self.vert_dict:
+        if frm not in self.vert_dict:
             self.add_vertex(frm)
-        if to.id not in self.vert_dict:
+        if to not in self.vert_dict:
             self.add_vertex(to)
 
-        self.vert_dict[frm.id].add_neighbor(self.vert_dict[to.id], cost)
-        self.vert_dict[to.id].add_neighbor(self.vert_dict[frm.id], cost)
+        self.vert_dict[frm].add_neighbor(self.vert_dict[to], cost)
+        self.vert_dict[to].add_neighbor(self.vert_dict[frm], cost)
 
     def get_vertices(self):
         return self.vert_dict.keys()
 
 
-# if __name__ == '__main__':
-#
-#     g = Graph()
-#
-#     nodes = {'a': Node('a'),
-#              'b': Node('b'),
-#              'c': Node('c'),
-#              'd': Node('d'),
-#              'e': Node('e'),
-#              'f': Node('f')}
-#
-#     g.add_vertex(nodes['a'])
-#     g.add_vertex(nodes['b'])
-#     g.add_vertex(nodes['c'])
-#     g.add_vertex(nodes['d'])
-#     g.add_vertex(nodes['e'])
-#     g.add_vertex(nodes['f'])
-#
-#     g.add_edge(nodes['a'], nodes['b'], 7)
-#     g.add_edge(nodes['a'], nodes['c'], 9)
-#     g.add_edge(nodes['a'], nodes['f'], 14)
-#     g.add_edge(nodes['b'], nodes['c'], 10)
-#     g.add_edge(nodes['b'], nodes['d'], 15)
-#     g.add_edge(nodes['c'], nodes['d'], 11)
-#     g.add_edge(nodes['c'], nodes['f'], 2)
-#     g.add_edge(nodes['d'], nodes['e'], 6)
-#     g.add_edge(nodes['e'], nodes['f'], 9)
-#
-#     for v in g:
-#         for w in v.get_connections():
-#             vid = v.get_id()
-#             wid = w  # w.get_id()
-#             print('( {%s} , {%s}, {%3d})'.format(vid, wid, v.get_weight(w)))
-#
-#     for v in g:
-#         print('g.vert_dict[{%s}]={%s}'.format(v.get_id(), g.vert_dict[v.get_id()]))
-#
-#     print(g.get_vertices())
-#
-#     # if 'd' in nodes:
-#     #     g.delete_vertex(nodes['d'])
-#     #
-#     # print(g.get_vertices())
-#     #
-#     # for v in g:
-#     #     for w in v.get_connections():
-#     #         vid = v.get_id()
-#     #         wid = w  # w.get_id()
-#     #         print('( {%s} , {%s}, {%3d})'.format(vid, wid, v.get_weight(w)))
+if __name__ == '__main__':
+
+    g = Graph()
+
+    nodes = {'a': Node('a'),
+             'b': Node('b'),
+             'c': Node('c'),
+             'd': Node('d'),
+             'e': Node('e'),
+             'f': Node('f')}
+
+    g.add_vertex(nodes['a'])
+    g.add_vertex(nodes['b'])
+    g.add_vertex(nodes['c'])
+    g.add_vertex(nodes['d'])
+    g.add_vertex(nodes['e'])
+    g.add_vertex(nodes['f'])
+
+    g.add_edge('a', 'b', 7)
+    g.add_edge('a', 'c', 9)
+    g.add_edge('a', 'f', 14)
+    g.add_edge('b', 'c', 10)
+    g.add_edge('b', 'd', 15)
+    g.add_edge('c', 'd', 11)
+    g.add_edge('c', 'f', 2)
+    g.add_edge('d', 'e', 6)
+    g.add_edge('e', 'f', 9)
+
+    for v in g:
+        for w in v.get_connections():
+            vid = v.get_id()
+            wid = w  # w.get_id()
+            print('( {} , {}, {})'.format(vid, wid, v.get_weight(w)))
+
+    for v in g:
+        print('g.vert_dict[{}]={}'.format(v.get_id(), g.vert_dict[v.get_id()]))
+
+    print(g.get_vertices())
+
+    # if 'd' in nodes:
+    #     g.delete_vertex(nodes['d'])
+    #
+    # print(g.get_vertices())
+    #
+    # for v in g:
+    #     for w in v.get_connections():
+    #         vid = v.get_id()
+    #         wid = w  # w.get_id()
+    #         print('( {%s} , {%s}, {%3d})'.format(vid, wid, v.get_weight(w)))
