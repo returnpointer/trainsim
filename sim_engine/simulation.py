@@ -62,7 +62,7 @@ def sim_update(graph, trains, current_paths, current_source, current_destination
                 current_paths[train][curr_dest_idx][distance_idx] -= 1
                 distance = current_paths[train][curr_dest_idx][distance_idx]
 
-                print(">>> {} on it's way to {}, "
+                print(">>> {} on it's way to {} with signal GREEN, "
                       "distance remaining {}.".format(train,
                                                       destination,
                                                       distance))
@@ -75,7 +75,7 @@ def sim_update(graph, trains, current_paths, current_source, current_destination
                         current_destination[train] = current_paths[train][curr_dest_idx][dest_idx]
 
         else:
-            print(">>>> {} to {} stopped with signal RED. ".format(train, destination))
+            print(">>>> {} stopped on it's way to {} with signal RED. ".format(train, destination))
 
     return
 

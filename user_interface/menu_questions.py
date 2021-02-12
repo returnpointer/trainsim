@@ -2,6 +2,18 @@
 Menu Question Definitions
 """
 
+from PyInquirer import style_from_dict, Token
+
+style = style_from_dict({
+    Token.Separator: '#fff',  # white
+    Token.QuestionMark: '#000',  # black
+    Token.Selected: '#00BFFF',  # sky blue
+    Token.Pointer: '#fff',  # white
+    Token.Instruction: '#fff',  # white
+    Token.Answer: '#008000 bold',  # green
+    Token.Question: '#FF7F50',  # shade of orange
+})
+
 main_questions = [
     {
         'type': 'list',
