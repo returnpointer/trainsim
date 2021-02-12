@@ -1,9 +1,12 @@
 """
+Dijkstra Graph Class
+inherits from Graph Base Class
+
 originally from
 https://www.bogotobogo.com/python/python_Dijkstras_Shortest_Path_Algorithm.php
 """
 
-from graph import Vertex, Graph, Node
+from graph.graph import Vertex, Graph, Node
 import sys
 
 

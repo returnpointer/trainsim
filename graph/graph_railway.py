@@ -1,9 +1,14 @@
-from graph_dijkstra import VertexD, GraphD
-import graph_dijkstra
-import sys
+"""
+Railway Network Graph Class
+inherits from Dijkstra Graph Class
+"""
+
+from graph.graph_dijkstra import VertexD, GraphD
+from graph import graph_dijkstra
 
 SIGNAL_STATE = {'RED': 0, 'GREEN': 1}
 SIGNAL_STATE_DCODE = {0: 'RED', 1: 'GREEN'}
+
 
 class Connector(VertexD):
     weight_idx = 0

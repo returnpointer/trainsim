@@ -1,5 +1,9 @@
-from graph_railway import SIGNAL_STATE, print_graph
-from graph_dijkstra import dijkstra, shortest
+"""
+Simulation Engine
+"""
+
+from graph.graph_railway import SIGNAL_STATE
+from graph.graph_dijkstra import dijkstra, shortest
 from time import sleep
 
 

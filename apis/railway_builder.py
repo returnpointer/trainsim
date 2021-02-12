@@ -1,5 +1,8 @@
-"""Railway Building APIs"""
-from graph_railway import Node
+"""
+Railway Building APIs
+"""
+
+from graph.graph_railway import Node
 
 num_stations = 0
 num_junctions = 0

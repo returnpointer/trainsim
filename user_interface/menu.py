@@ -1,9 +1,13 @@
-from PyInquirer import style_from_dict, prompt, Token, Separator
-from menu_questions import main_questions, build_questions, train_questions, track_questions, sim_questions1, \
+"""
+Menu Functions
+"""
+
+from PyInquirer import style_from_dict, prompt, Token
+from user_interface.menu_questions import main_questions, build_questions, train_questions, track_questions, sim_questions1, \
     sim_questions2
-from graph_railway import GraphRailway, print_graph
-from railway_builder import add_station, add_junction, add_track, add_train
-from simulation import sim_run
+from graph.graph_railway import GraphRailway
+from apis.railway_builder import add_station, add_junction, add_track, add_train
+from sim_engine.simulation import sim_run
 from time import sleep
 
 style = style_from_dict({
@@ -176,5 +180,3 @@ def main_menu():
             print("Goodbye!")
             break
 
-
-main_menu()

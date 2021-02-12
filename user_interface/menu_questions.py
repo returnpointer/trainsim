@@ -1,3 +1,7 @@
+"""
+Menu Question Definitions
+"""
+
 main_questions = [
     {
         'type': 'list',
