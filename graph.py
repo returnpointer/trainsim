@@ -56,9 +56,9 @@ class Graph:
             del self.vert_dict[node.id]
             self.num_vertices = self.num_vertices - 1
 
-    def get_vertex(self, n):
-        if n in self.vert_dict:
-            return self.vert_dict[n]
+    def get_vertex(self, v_id):
+        if v_id in self.vert_dict:
+            return self.vert_dict[v_id]
         else:
             return None
 

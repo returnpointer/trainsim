@@ -1,7 +1,9 @@
 from PyInquirer import style_from_dict, prompt, Token, Separator
-from menu_questions import main_questions, build_questions, train_questions, track_questions
-from graph_railway import GraphRailway
+from menu_questions import main_questions, build_questions, train_questions, track_questions, sim_questions1, \
+    sim_questions2
+from graph_railway import GraphRailway, print_graph
 from railway_builder import add_station, add_junction, add_track, add_train
+from simulation import sim_run
 from time import sleep
 
 style = style_from_dict({
@@ -21,6 +23,7 @@ def build_menu(railway, graph):
     if answers['build'] == 'Station':
         add_station(railway, graph)
 
+        sim_questions2[0]['choices'].append(railway['stations'][-1])
         train_questions[0]['choices'].append(railway['stations'][-1])
         track_questions[1]['choices'].append(railway['stations'][-1])
         track_questions[2]['choices'].append(railway['stations'][-1])
@@ -75,7 +78,10 @@ def build_menu(railway, graph):
             answers = prompt(train_questions, style=style)
 
             train_num = add_train(railway, answers['station'])
+
             train_id = 'train' + str(train_num)
+            sim_questions1[0]['choices'].append(train_id)
+
             print("Train " + train_id + " at station " +
                   railway['trains'][train_id] + " successfully added.")
             sleep(1)
@@ -92,10 +98,57 @@ def build_menu(railway, graph):
 
         print("Trains:")
         print(railway['trains'])
+        sleep(1)
 
         ret = True
 
     return ret
+
+
+def sim_menu(railway, graph):
+    """Simulation Menu"""
+
+    if not railway['stations'] or \
+            not railway['tracks'] or \
+            not railway['trains']:
+        print("Sorry! Cannot run simulation without building "
+              "railway network of stations/tracks/trains first.")
+        return
+
+    while 1:
+        trains = {}
+        answers = prompt(sim_questions1, style=style)
+
+        if answers['trains'] == 'Main Menu':
+            # Quit Simulation
+            break
+
+        elif answers['trains'] == 'All':
+            # print("Sorry! Simulation of 'All' trains currently not supported, "
+            #       "please select a single train.")
+            for key in railway['trains'].keys():
+                base_station = railway['trains'][key]
+
+                # arbitrary choice of last
+                # neighbor as destination station
+                neighbor_stations = list(graph.get_vertex(base_station).get_connections())
+                neighbor_stations.sort()
+                dest_station = neighbor_stations[-1]
+
+                trains[key] = [base_station, dest_station]
+
+        else:  # User selected train
+            train = answers['trains']
+            base_station = railway['trains'][train]
+
+            answers = prompt(sim_questions2, style=style)
+            while answers['destination'] == base_station:
+                print("Sorry! Can't start and end at the same station.")
+                answers = prompt(sim_questions2, style=style)
+
+            trains[train] = [base_station, answers['destination']]
+
+        sim_run(graph, trains)
 
 
 def main_menu():
@@ -115,8 +168,8 @@ def main_menu():
             while not back_to_main_menu:
                 back_to_main_menu = build_menu(railway, g)
 
-        elif answers['main'] == 'Run Simulation':
-            # sim_run()
+        elif answers['main'] == 'Simulation':
+            sim_menu(railway, g)
             print(answers)
 
         else:  # Quit program

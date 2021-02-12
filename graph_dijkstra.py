@@ -47,6 +47,9 @@ class VertexD(Vertex):
     def set_visited(self):
         self.visited = True
 
+    def reset_visited(self):
+        self.visited = False
+
     def __str__(self):
         return str(self.id) + ' adjacent: ' + str([x for x in self.adjacent])
 
@@ -67,11 +70,17 @@ class GraphD(Graph):
     def get_vertices(self):
         return self.vert_dict.keys()
 
-    def set_previous(self, current):
-        self.previous = current
+    def reset_vertices(self):
+        for vertex in self:
+            vertex.set_distance(sys.maxsize)
+            vertex.set_previous(None)
+            vertex.reset_visited()
 
-    def get_previous(self, current):
-        return self.previous
+    # def set_previous(self, current):
+    #     self.previous = current
+    #
+    # def get_previous(self, current):
+    #     return self.previous
 
 
 def shortest(v, path):
@@ -85,8 +94,8 @@ def shortest(v, path):
 import heapq
 
 
-def dijkstra(aGraph, start, target, nodes):
-    print('''Running Dijkstra's shortest path''')
+def dijkstra(aGraph, start):
+    print('''Running Dijkstra's shortest path from {}'''.format(start.id))
     # Set the distance for the start node to zero
     start.set_distance(0)
 
@@ -164,9 +173,9 @@ if __name__ == '__main__':
             # wid = w.get_id()
             print('( {} , {}, {})'.format(vid, wid, v.get_weight(w)))
 
-    dijkstra(g, g.get_vertex('b'), g.get_vertex('f'), nodes)
+    dijkstra(g, g.get_vertex('a'))
 
-    target = g.get_vertex('f')
+    target = g.get_vertex('d')
     path = [target.get_id()]
     shortest(target, path)
     print('The shortest path : {}'.format(path[::-1]))

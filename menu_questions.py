@@ -3,7 +3,7 @@ main_questions = [
         'type': 'list',
         'name': 'main',
         'message': '1. What would you like to do ?',
-        'choices': ['Build Railway', 'Run Simulation', 'Quit'],
+        'choices': ['Build Railway', 'Simulation', 'Quit'],
     }
 ]
 
@@ -43,6 +43,25 @@ train_questions = [
         'type': 'list',
         'name': 'station',
         'message': '1. Where would you like to station the train ?',
+        'choices': [],
+    }
+]
+
+
+sim_questions1 = [
+    {
+        'type': 'list',
+        'name': 'trains',
+        'message': '1. Which train(s) would you like to ride ?',
+        'choices': ['Main Menu', 'All'],
+    },
+]
+
+sim_questions2 = [
+    {
+        'type': 'list',
+        'name': 'destination',
+        'message': '1. Where would you like to go ?',
         'choices': [],
     }
 ]
